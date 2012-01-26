@@ -16,7 +16,8 @@ public class HardcorePlugin extends JavaPlugin {
 	private DeadPlayerList _deadPlayerList = null;
 	public HardcoreConfiguration _config = null;
 	public HardcorePlugin _thisPlugin;
-	
+
+	Listeners Listeners = null;
 		
 	@Override
 	public void onDisable() {
@@ -31,19 +32,21 @@ public class HardcorePlugin extends JavaPlugin {
 		this.log(yml.getVersion()  + " loading.");
 				
 		PluginManager pm = this.getServer().getPluginManager();
-		DeathEventListener deathListener = new DeathEventListener(this);
-		SpawnEventListener spawnListener = new SpawnEventListener(this);
+		//DeathEventListener deathListener = new DeathEventListener(this);
+		//SpawnEventListener spawnListener = new SpawnEventListener(this);
 		
 		//hook on to death and login
-		pm.registerEvent(Event.Type.ENTITY_DEATH, deathListener, Event.Priority.Normal, this);
+		//pm.registerEvent(Event.Type.ENTITY_DEATH, deathListener, Event.Priority.Normal, this);
 		
-		pm.registerEvent(Event.Type.PLAYER_LOGIN, spawnListener, Event.Priority.Normal, this);
+		Listeners = new Listeners(this);
+		
+		//pm.registerEvent(Event.Type.PLAYER_LOGIN, spawnListener, Event.Priority.Normal, this);
 				
 		_config = new HardcoreConfiguration(this);
 		_deadPlayerList = new DeadPlayerList(this);
 		
 		//hookup the /hardcore command
-		HardcoreCommandExecutor cmd=new HardcoreCommandExecutor(this);
+		HardcoreCommandExecutor cmd = new HardcoreCommandExecutor(this);
 		getCommand("hardcore").setExecutor(cmd);
 		
 		//really java, really?
