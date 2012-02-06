@@ -19,7 +19,6 @@ public class DeadLog {
 		File logFile = this.getDeadlogFile();
 
 		FileWriter fw;
-
 		try {
 
 			if (!logFile.exists()) {

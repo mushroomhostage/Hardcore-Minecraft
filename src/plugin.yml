@@ -1,7 +1,28 @@
-name: Hardcore
+name: Hardcore 2.0
 main: com.Evilgeniuses.Hardcore.HardcorePlugin
-version: 0.5
+version: 2.0
+author: KnightHawk3
 commands:
    hardcore:
       description: Hardcore commands
-      usage: /hardcore res|slay|info|setpurgatory [player]
+      usage: /hardcore res|slay|info [player]
+permissions:
+  hardcore.*:
+  	description: Allows you to use all hardcore commands!
+    default: op
+    children:
+	  hardcore.info: true
+	  hardcore.res: true
+	  hardcore.slay: true
+	  hardcore.exclude: true
+  hardcore.info:
+  	description: Allows you to use all hardcore commands!
+    default: true
+  hardcore.res:
+  	description: Allows you to resurect players!
+    default: op
+  hardcore.slay:
+  	description: Allows you to use the slay command!
+    default: op
+  hardcore.exclude:
+  	default: false

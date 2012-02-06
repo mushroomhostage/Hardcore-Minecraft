@@ -29,13 +29,19 @@ public class HardcoreConfiguration {
 	public Date resurrectionDayStart;
 	public Date resurrectionDayEnd;
 	
+	private boolean DEFUALT_PVP_ONLY_BAN = false;
+	public boolean banOnlyOnPVP;
+	
+	
 	HardcoreConfiguration(HardcorePlugin plugin) {
 		Configuration config = plugin.getConfiguration();
+		
+		this.banOnlyOnPVP=config.getBoolean("banOnlyOnPVP", DEFUALT_PVP_ONLY_BAN);
+		
 		
 		this.deathSeconds=config.getInt("deathSeconds", DEFAULT_DEATH_DURATION_SECONDS);
 		this.reaperCheckSeconds=config.getInt("reaperCheckSeconds", DEFAULT_REAPER_CHECK_SECONDS);
 
-		this.finalFarewell=config.getBoolean("finalFarewell", DEFAULT_FINAL_FAREWELL);
 		this.finalFarewellSeconds=config.getInt("finalFarewellSeconds", DEFAULT_FINAL_FAREWELL_SECONDS);
 
 		this.doThunderAndLightningOnDeath=config.getBoolean("doThunderAndLightningOnDeath", DEFAULT_THUNDER_LIGHTNING);

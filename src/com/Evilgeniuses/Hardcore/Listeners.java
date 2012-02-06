@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 
@@ -20,14 +21,19 @@ public class Listeners implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void playerDeath(PlayerDeathEvent event) {
+	public void playerDeath(EntityDeathEvent event) {
 		// make sure it is a player
 		if (!(event instanceof PlayerDeathEvent))
 			return;
 
 		Player player = (Player) event.getEntity();
 		PlayerDeathEvent de = (PlayerDeathEvent) event;
-
+		
+		if (!(player.getKiller() instanceof Player) && !_plugin.getConfig().getBoolean("banOnlyOnPVP")) {
+		
+		if (!player.hasPermission("hardcore.exclude")){return;}else{
+			player.sendMessage(ChatColor.RED + "You Have Been Spared, This time...");}
+		
 		// don't add the player more than once to the list
 		if (!_plugin.getDeadPlayerList().isPlayerDead(player.getName(), false)) {
 			_plugin.getDeadPlayerList().addPlayer(player, de.getDeathMessage());
@@ -41,6 +47,7 @@ public class Listeners implements Listener {
 
 		if (_plugin.getHardcoreConfiguration().doThunderAndLightningOnDeath)
 			doSoundAndFury(player.getLocation(), player.getWorld());
+		}
 	}	
 	
 	
@@ -64,7 +71,7 @@ public class Listeners implements Listener {
 	
 	
 
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler(priority = EventPriority.LOW)
 	public void playerLogin(PlayerLoginEvent event) {
 
 		String playername = event.getPlayer().toString();

@@ -27,7 +27,6 @@ public class HardcoreCommandExecutor implements CommandExecutor  {
 		{
 			if (args.length==0)
 				return false;
-			
 			if (args[0].equalsIgnoreCase("res")) 
 				return runResCommand(sender,player,args);
 			else if (args[0].equalsIgnoreCase("slay"))
@@ -41,12 +40,12 @@ public class HardcoreCommandExecutor implements CommandExecutor  {
 		
 		return true;
 	}
-	
+
 		private boolean runSlayCommand(CommandSender sender, Player player,
 			String[] args) {
 		
 			//if it was run from the console or if they have permission
-			if((player==null) || (player.hasPermission("hardcore.slay")) || player.isOp())
+			if((player==null) || (player.hasPermission("hardcore.slay")))
 			{
 				if (args.length==2) 
 				{
@@ -95,7 +94,7 @@ public class HardcoreCommandExecutor implements CommandExecutor  {
 		private boolean runResCommand(CommandSender sender, Player player, String[] args) {
 
 			//if it was run from the console or if they have permission
-			if((player==null) || (player.hasPermission("hardcore.res")) || player.isOp())
+			if((player==null) || (player.hasPermission("hardcore.res")))
 			{
 				if (args.length==2) 
 				{
@@ -138,8 +137,7 @@ public class HardcoreCommandExecutor implements CommandExecutor  {
 		{
 			
 				//if it was run from the console or if they have permission
-				if((player==null) || (player.hasPermission("hardcore.info")) || player.isOp())
-				{
+				if((player==null) || (player.hasPermission("hardcore.info")))	{
 					if (args.length==2) 
 					{
 						String playerName = args[1];
