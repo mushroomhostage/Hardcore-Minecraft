@@ -34,6 +34,10 @@ public class HardcoreConfiguration {
 	
 	
 	HardcoreConfiguration(HardcorePlugin plugin) {
+		plugin.getConfig().options().copyDefaults(true);
+		plugin.saveConfig();
+		plugin.reloadConfig();
+
 		this.banOnlyOnPVP=plugin.getConfig().getBoolean("banOnlyOnPVP", DEFUALT_PVP_ONLY_BAN);
 		
 		
@@ -74,8 +78,6 @@ public class HardcoreConfiguration {
 			else
 				plugin.log("Resurrection is between: " + this.resurrectionDayStart.toString() + " and " + this.resurrectionDayEnd.toString());
 		}
-		
-		plugin.saveConfig();
 	}
 	
 	
