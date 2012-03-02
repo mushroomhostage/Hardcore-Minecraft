@@ -1,0 +1,10 @@
+banOnlyOnPVP: false
+deathSeconds: 259200
+reaperCheckSeconds: 5
+finalFarewellSeconds: 60
+doThunderAndLightningOnDeath: true
+thunderLengthSeconds: 1
+useResurrectionDay: false
+resurrectionDayStart: 12/31/69 4:00 PM
+resurrectionDayEnd: 12/31/69 4:00 PM
+finalFarewell: false

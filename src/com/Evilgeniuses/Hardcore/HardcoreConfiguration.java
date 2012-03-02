@@ -40,6 +40,7 @@ public class HardcoreConfiguration {
 		this.deathSeconds=plugin.getConfig().getInt("deathSeconds", DEFAULT_DEATH_DURATION_SECONDS);
 		this.reaperCheckSeconds=plugin.getConfig().getInt("reaperCheckSeconds", DEFAULT_REAPER_CHECK_SECONDS);
 
+		this.finalFarewell=plugin.getConfig().getBoolean("finalFarewell", DEFAULT_FINAL_FAREWELL);
 		this.finalFarewellSeconds=plugin.getConfig().getInt("finalFarewellSeconds", DEFAULT_FINAL_FAREWELL_SECONDS);
 
 		this.doThunderAndLightningOnDeath=plugin.getConfig().getBoolean("doThunderAndLightningOnDeath", DEFAULT_THUNDER_LIGHTNING);
