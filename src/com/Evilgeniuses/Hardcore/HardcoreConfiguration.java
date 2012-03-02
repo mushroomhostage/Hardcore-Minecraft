@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
-import org.bukkit.util.config.Configuration;
+import org.bukkit.configuration.*;
 
 public class HardcoreConfiguration {
 	
@@ -34,23 +34,21 @@ public class HardcoreConfiguration {
 	
 	
 	HardcoreConfiguration(HardcorePlugin plugin) {
-		Configuration config = plugin.getConfiguration();
-		
-		this.banOnlyOnPVP=config.getBoolean("banOnlyOnPVP", DEFUALT_PVP_ONLY_BAN);
+		this.banOnlyOnPVP=plugin.getConfig().getBoolean("banOnlyOnPVP", DEFUALT_PVP_ONLY_BAN);
 		
 		
-		this.deathSeconds=config.getInt("deathSeconds", DEFAULT_DEATH_DURATION_SECONDS);
-		this.reaperCheckSeconds=config.getInt("reaperCheckSeconds", DEFAULT_REAPER_CHECK_SECONDS);
+		this.deathSeconds=plugin.getConfig().getInt("deathSeconds", DEFAULT_DEATH_DURATION_SECONDS);
+		this.reaperCheckSeconds=plugin.getConfig().getInt("reaperCheckSeconds", DEFAULT_REAPER_CHECK_SECONDS);
 
-		this.finalFarewellSeconds=config.getInt("finalFarewellSeconds", DEFAULT_FINAL_FAREWELL_SECONDS);
+		this.finalFarewellSeconds=plugin.getConfig().getInt("finalFarewellSeconds", DEFAULT_FINAL_FAREWELL_SECONDS);
 
-		this.doThunderAndLightningOnDeath=config.getBoolean("doThunderAndLightningOnDeath", DEFAULT_THUNDER_LIGHTNING);
-		this.thunderLengthSeconds=config.getInt("thunderLengthSeconds",DEFAULT_THUNDER_LENGTH_SECONDS);
+		this.doThunderAndLightningOnDeath=plugin.getConfig().getBoolean("doThunderAndLightningOnDeath", DEFAULT_THUNDER_LIGHTNING);
+		this.thunderLengthSeconds=plugin.getConfig().getInt("thunderLengthSeconds",DEFAULT_THUNDER_LENGTH_SECONDS);
 
-		this.useResurrectionDay=config.getBoolean("useResurrectionDay", DEFAULT_USE_RESURRECTION_DAY);
+		this.useResurrectionDay=plugin.getConfig().getBoolean("useResurrectionDay", DEFAULT_USE_RESURRECTION_DAY);
 		
-		String resDateRawStart = config.getString("resurrectionDayStart", DEFAULT_RESURRECTION_DAY_START);
-		String resDateRawEnd = config.getString("resurrectionDayEnd", DEFAULT_RESURRECTION_DAY_END);
+		String resDateRawStart = plugin.getConfig().getString("resurrectionDayStart", DEFAULT_RESURRECTION_DAY_START);
+		String resDateRawEnd = plugin.getConfig().getString("resurrectionDayEnd", DEFAULT_RESURRECTION_DAY_END);
 		
 		try {
 			this.resurrectionDayStart = DateFormat.getInstance().parse(resDateRawStart);
@@ -76,7 +74,7 @@ public class HardcoreConfiguration {
 				plugin.log("Resurrection is between: " + this.resurrectionDayStart.toString() + " and " + this.resurrectionDayEnd.toString());
 		}
 		
-		config.save();	
+		plugin.saveConfig();
 	}
 	
 	
